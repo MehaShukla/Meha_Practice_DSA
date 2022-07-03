@@ -121,7 +121,7 @@ int main() {
 	return 0;
 }
 
-//sibling
+//print all nodes with no sibling
 
 #include<bits/stdc++.h>
 using namespace std;
