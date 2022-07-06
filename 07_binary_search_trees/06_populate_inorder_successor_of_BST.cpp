@@ -5,6 +5,24 @@
 */
 
 // ----------------------------------------------------------------------------------------------------------------------- //
+class Solution
+{
+public:
+    Node *prev = NULL;
+    void populateNext(Node *root)
+    {
+        //code here
+        if (root==NULL){
+            return;
+        }
+        populateNext(root->right);
+        if (root!=NULL){
+            root->next = prev;
+            prev = root;
+        }
+        populateNext(root->left);
+    }
+};
 /*
     using reverse inorder traversal
 */

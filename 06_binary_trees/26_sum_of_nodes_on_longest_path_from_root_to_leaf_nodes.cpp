@@ -16,7 +16,7 @@ void recur(Node* root, int level, int& maxLevel, int sum, int& ans) {
     if (!root) return;
 
     // update sum with current data
-    sum += root->data;
+    sum += root->data; // & ni liya so at every level sum change hora overall sum ni h
 
     // if level has increased then update the current ans.
     if (level >= maxLevel) {

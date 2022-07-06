@@ -21,11 +21,12 @@ bool findPair(Node* root, int key) {
 }
 
 void inorderCheck(Node* root, Node* root2, int x, int& cnt) {
-    if (!root || root->data >= x) return;
+    if (!root) return;
 
-    if (findPair(root2, x - root->data)) cnt++;
+
 
     inorderCheck(root->left, root2, x, cnt);
+    if (findPair(root2, x - root->data)) cnt++;//x-root data is key to be searched in root2
     inorderCheck(root->right, root2, x, cnt);
 }
 

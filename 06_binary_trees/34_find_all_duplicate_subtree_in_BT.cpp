@@ -33,14 +33,15 @@ string inorder(Node* node, unordered_map<string, int>& m)
     str += inorder(node->left, m);
     str += to_string(node->data);
     str += inorder(node->right, m);
-    str += ")";
+    str += ")";  // hr subtree store ho jygi
 
     // Subtree already present (Note that we use
     // unordered_map instead of unordered_set
     // because we want to print multiple duplicates
     // only once, consider example of 4 in above
     // subtree, it should be printed only once.
-    if (m[str] == 1)
+
+    if (m[str] == 1) //bad me plus already present h str to mtlb repeated
         cout << node->data << " ";
 
     m[str]++;

@@ -3,7 +3,7 @@
 
     sol: https://www.geeksforgeeks.org/find-postorder-traversal-of-bst-from-preorder-traversal/
 */
-
+//print postorder from pre
 
 // ----------------------------------------------------------------------------------------------------------------------- //
 /*
@@ -103,7 +103,7 @@ void getPostOrderBST(int pre[], int N)
     {
         if (pre[0] <= pre[i])
         {
-            pivotPoint = i;
+            pivotPoint = i;//rhs starts kyoki bada mila root se
             break;
         }
     }

@@ -2,12 +2,30 @@
     link: https://www.geeksforgeeks.org/maximum-sum-nodes-binary-tree-no-two-adjacent/
 */
 
+// alternate levels se include kr skte h
 
-
-
+// ya to node include kro to upr neeche ka ni= root->l->l+root->l->r+r->data
+// if node exclude to root->l+root->r
 
 // ----------------------------------------------------------------------------------------------------------------------- //
-/*
+ if(root==null) return 0;
+       if(m.containsKey(root)) return m.get(root);
+       int withnode=root.data;
+       if(root.left!=null){
+           withnode+=getMaxSum(root.left.left);
+           withnode+=getMaxSum(root.left.right);
+       }
+       if(root.right!=null){
+           withnode+=getMaxSum(root.right.left);
+           withnode+=getMaxSum(root.right.right);
+       }
+
+       int withoutnode = getMaxSum(root.left) +  getMaxSum(root.right);
+
+       m.put(root,Math.max(withnode,withoutnode));
+       return Math.max(withnode,withoutnode);
+   }
+   /*
     using map
     TC: O(N^2)
 */

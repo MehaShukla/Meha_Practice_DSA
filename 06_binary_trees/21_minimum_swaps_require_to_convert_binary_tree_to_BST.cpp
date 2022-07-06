@@ -25,7 +25,7 @@ void inorder(int a[], std::vector<int>& v,
     // if index is greater or equal to vector size
     if (index >= n)
         return;
-    inorder(a, v, n, 2 * index + 1);
+    inorder(a, v, n, 2 * index + 1); // array me left is at index 2i+1 and right at 2i+2
 
     // push elements in vector
     v.push_back(a[index]);

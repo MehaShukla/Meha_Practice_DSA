@@ -14,7 +14,7 @@
     TC: O(N)
     SC: O(H), H is the height of the tree
 */
-// C++ implementation of the approach
+
 #include <bits/stdc++.h>
 using namespace std;
 

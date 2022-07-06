@@ -2617,6 +2617,10 @@ int32_t main() {
 	return 0;
 }
 //k pairs with smallest sum
+// Given two integer arrays arr1[] and arr2[] sorted in ascending order
+// and an integer k. Find k pairs with smallest sums such that one element of a
+//pair belongs to arr1[] and other element belongs to arr2[]
+Examples:
 class Solution {
 public:
     #define node pair<int,pair<int,int>>

@@ -5,7 +5,7 @@ int partitionHelper(int *arr,int s,int e)
 {
     int i=s-1;
     int pivot=arr[e];
-    for(int j=s;j<=e-1;j++)
+    for(int j=s;j<e;j++)
     {
         if(arr[j]<pivot) //2 8 3 1 7 4 ----> pivot is taken to be 4 ----> last element
         {

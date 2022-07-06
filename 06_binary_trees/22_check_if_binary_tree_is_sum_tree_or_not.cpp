@@ -87,3 +87,20 @@ int isSumTree(Node* root)
     sum(root, ans);
     return ans;
 }
+int main()
+{
+    node *root = newNode(26);
+    root->left = newNode(10);
+    root->right = newNode(3);
+    root->left->left = newNode(4);
+    root->left->right = newNode(6);
+    root->right->right = newNode(3);
+
+    int total = isSumTree(root);
+    if(total != -1 && total == 2*(root->data))
+    cout<<"Tree is a Sum Tree";
+    else
+    cout<<"Given Tree is not sum Tree";
+
+    return 0;
+}

@@ -53,7 +53,7 @@ void printKPathUtil(Node* root, vector<int>& path, int k)
     // Traverse the entire path as
     // there can be negative elements too
     int f = 0;
-    for (int j = path.size() - 1; j >= 0; j--)
+    for (int j = path.size() - 1; j >= 0; j--)// pushb kiya to last index me 1st node hogi so ulta print
     {
         f += path[j];
 
@@ -63,7 +63,7 @@ void printKPathUtil(Node* root, vector<int>& path, int k)
     }
 
     // Remove the current element from the path
-    path.pop_back();
+    path.pop_back();//backtrack
 }
 
 // A wrapper over printKPathUtil()
