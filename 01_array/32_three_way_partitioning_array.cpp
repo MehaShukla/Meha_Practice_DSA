@@ -7,15 +7,15 @@
 // ----------------------------------------------------------------------------------------------------------------------- //
 void threeWayPartition(vector<int>& array, int a, int b)
 {
-    int low = 0, high = array.size() - 1, mid = 0;
+    int i = 0, n = array.size() - 1, j = 0;
 
-    while (mid <= high) {
-        if (array[mid] < a) {
-            swap(array[mid++], array[low++]);   // we r sure after swap we won't get <a, bcoz it would have processed earlier.
+    while (j <= n) {
+        if (array[j] < a) {
+            swap(array[j++], array[i++]);   // we r sure after swap we won't get <a, bcoz it would have processed earlier.
         }
-        else if (array[mid] > b) {
-            swap(array[high--], array[mid]);    // here it is possible that after swap we can get >b value again hence no increment in mid.
+        else if (array[j] > b) {
+            swap(array[n--], array[j]);    // here it is possible that after swap we can get >b value again hence no increment in j.
         }
-        else mid++;
+        else j++;
     }
 }

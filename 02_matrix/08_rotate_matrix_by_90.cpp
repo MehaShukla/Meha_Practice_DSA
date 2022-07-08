@@ -7,6 +7,51 @@
 
 
 // ----------------------------------------------------------------------------------------------------------------------- //
+
+#include<iostream>
+using namespace std;
+int main() {
+	int n;
+	cin>>n;
+	int a[n][n];
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<n;j++)
+		{
+			cin>>a[i][j];
+
+		}
+	}
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<n;j++)
+		{
+			if(i<j)
+			swap(a[i][j],a[j][i]);
+
+		}
+	}
+
+	int i=0,j=n-1;
+	while(i<j)
+	{
+		for(int k=0;k<n;k++)
+		{
+			swap(a[i][k],a[j][k]);
+		}i++;
+		j--;
+	}
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<n;j++)
+		{
+			cout<<a[i][j]<<" ";
+		}cout<<'\n';
+	}
+
+	return 0;
+}
+/////////////////////////////////////////////////////
 /*
     Approach: The approach is based on the pattern made by indices after rotating the matrix.
     Consider the following illustration to have a clear insight into it.

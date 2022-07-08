@@ -11,6 +11,39 @@
 
 
 // ----------------------------------------------------------------------------------------------------------------------- //
+int m,n;
+	cin>>m>>n;// meeeeeeeeeeeeeeeeee
+	int a[m][n];
+	for(int i=0;i<m;i++)
+	{
+		for(int j=0;j<n;j++)
+		{
+			cin>>a[i][j];
+		}
+	}
+	int sr=0,sc=0,er=m-1,ec=n-1;
+	while(sr<=er&&sc<=ec)
+	{
+		for(int i=sr;i<=er;i++)
+		cout<<a[i][sc]<<", ";
+		sc++;
+
+		for(int i=sc;i<=ec;i++)
+		cout<<a[er][i]<<", ";
+
+		er--;
+		for(int i=er;i>=sr;i--)
+		cout<<a[i][ec]<<", ";
+		ec--;
+		for(int i=ec;i>=sc;i--)
+		cout<<a[sr][i]<<", ";
+		sr++;
+
+
+
+	}cout<<"END"<<'\n';
+	return 0;
+}
 /*
     simple solution just changing direction
 
@@ -146,37 +179,4 @@ void print(int arr[R][C], int i, int j, int m, int n)
             cout << arr[p][j] << " ";
 
     print(arr, i + 1, j + 1, m - 1, n - 1);
-}
-int m,n;
-	cin>>m>>n;
-	int a[m][n];
-	for(int i=0;i<m;i++)
-	{
-		for(int j=0;j<n;j++)
-		{
-			cin>>a[i][j];
-		}
-	}
-	int sr=0,sc=0,er=m-1,ec=n-1;
-	while(sr<=er&&sc<=ec)
-	{
-		for(int i=sr;i<=er;i++)
-		cout<<a[i][sc]<<", ";
-		sc++;
-
-		for(int i=sc;i<=ec;i++)
-		cout<<a[er][i]<<", ";
-
-		er--;
-		for(int i=er;i>=sr;i--)
-		cout<<a[i][ec]<<", ";
-		ec--;
-		for(int i=ec;i>=sc;i--)
-		cout<<a[sr][i]<<", ";
-		sr++;
-
-
-
-	}cout<<"END"<<'\n';
-	return 0;
 }

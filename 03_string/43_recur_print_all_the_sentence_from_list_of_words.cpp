@@ -7,11 +7,9 @@
 // C++ program to print all possible sentences from a list of word list
 #include <iostream>
 #include <string>
-
 #define R 3
 #define C 3
 using namespace std;
-
 // A recursive function to print all possible sentences that can be formed
 // from a list of word list
 void printUtil(string arr[R][C], int m, int n, string output[R])

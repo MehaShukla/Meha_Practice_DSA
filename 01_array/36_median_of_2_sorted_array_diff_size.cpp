@@ -2,7 +2,7 @@
     link: https://www.geeksforgeeks.org/median-of-two-sorted-arrays-of-different-sizes/
 */
 
-
+// log(min(n,m))https://takeuforward.org/data-structure/median-of-two-sorted-arrays-of-different-sizes/
 
 // ----------------------------------------------------------------------------------------------------------------------- //
 /*
@@ -10,6 +10,79 @@
 
     Time Complexity: O(m + n).
 */
+//logn
+#include<bits/stdc++.h>
+using namespace std;
+
+float median(int num 1[],int num2[],int m,int n) {
+    if(m>n)
+        return median(nums2,nums1,n,m);//ensuring that binary search happens on minimum size array
+
+    int low=0,high=m,medianPos=((m+n)+1)/2;
+    while(low<=high) {
+        int cut1 = (low+high)>>1;
+        int cut2 = medianPos - cut1;
+
+        int l1 = (cut1 == 0)? INT_MIN:nums1[cut1-1];
+        int l2 = (cut2 == 0)? INT_MIN:nums2[cut2-1];
+        int r1 = (cut1 == m)? INT_MAX:nums1[cut1];
+        int r2 = (cut2 == n)? INT_MAX:nums2[cut2];
+
+        if(l1<=r2 && l2<=r1) {
+            if((m+n)%2 != 0)
+                return max(l1,l2);
+            else
+                return (max(l1,l2)+min(r1,r2))/2.0;
+        }
+        else if(l1>r2) high = cut1-1;
+        else low = cut1+1;
+    }
+    return 0.0;
+}
+
+int main() {
+    int nums1[] = {1,4,7,10,12};
+    int nums2[] = {2,3,6,15};
+    int m = sizeof(nums1)/sizeof(nums1[0]);
+    int n = sizeof(nums2)/sizeof(nums2[0]);
+    cout<<"The Median of two sorted arrays is"<<fixed<<setprecision(5)
+    <<median(nums1,nums2,m,n);
+    return 0;
+}
+Output:
+
+The Median of two sorted arrays is 6.00000
+
+Time Complexity : O(log(m,n))
+
+Reason – We are applying binary search on the array which has a minimum size.
+
+Space Complexity: O(1)
+
+Reason – No extra array is used.
+
+Dry Run :
+
+Let’s look into the dry run. For example 1, the total size is equal to 9 which is odd. Applying the formula, the median will be at (5+1)/2 = 10/2 = 5th position of the final merged sorted array. The size of nums2 is less than the size of nums1. Thus, apply binary search in nums2.
+
+
+
+We will cut1 to be at pos 2. So, the total number of elements at the left of cut1 is 2. So, we will choose the remaining 3 elements from num2. We will make cut2 at 3.
+
+
+
+Partitioning is invalid. l2>r1 and to make the left half valid, we have to decrease the value of l2. We have to move right by moving low to cut1+1.
+
+
+
+We moved towards the right and got a new partitioning.
+
+
+
+We can see it is a valid left half. Thus, we get our median as max(l1,l2).
+
+
+
 int getMedian(int ar1[], int ar2[], int n, int m)
 {
     int i = 0; /* Current index of input array ar1[] */

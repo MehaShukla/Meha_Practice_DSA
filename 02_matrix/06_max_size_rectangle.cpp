@@ -2,13 +2,188 @@
     link: https://practice.geeksforgeeks.org/problems/max-rectangle/1#
 
     sol: https://www.geeksforgeeks.org/maximum-size-rectangle-binary-sub-matrix-1s/
+    Given a binary matrix, find the maximum size rectangle binary-sub-matrix with all 1’s.
 
     video(watch just for the animation from here): https://youtu.be/hGl8Boeb7S4?t=70
 */
 
 
 
-// ----------------------------------------------------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------------------
+max area histogram
+https://www.geeksforgeeks.org/largest-rectangle-under-histogram/
+int main(){
+    int arr[] = {6,2,5,4,5,1,6};
+    // To calculate NLR
+    vector<int> right;
+    stack<pair<int,int>> s1;
+
+    for(int i=6; i>=0; i--){
+    if(s1.empty()){
+        right.push_back(7);
+    }
+  else if(s1.size()>0 && s1.top().first<arr[i]){
+      right.push_back(s1.top().second);
+  }
+    else if(s1.size()>0 && s1.top().first>=arr[i]){
+        while(s1.size()>0 && s1.top().first>=arr[i]){
+            s1.pop();
+        }
+        if(s1.empty()){
+            right.push_back(7);
+        }
+        else{
+            right.push_back(s1.top().second);
+        }
+    }
+    s1.push({arr[i],i});
+    }
+     reverse(right.begin(),right.end());
+     for(int i=0; i<7; i++){
+         cout<<right[i]<<" ";
+     }
+   cout<<endl;
+// To calculate NLL
+
+  vector<int> left;
+stack<pair<int,int>> s2;
+
+for(int i=0; i<7; i++){
+    if(s2.empty()){
+        left.push_back(-1);
+    }
+    else if(s2.size()>0 && s2.top().first<arr[i]){
+        left.push_back(s2.top().second);
+    }
+    else if(s2.size()>0 && s2.top().first>=arr[i]){
+        while(s2.size()>0 && s2.top().first>=arr[i]){
+            s2.pop();
+        }
+        if(s2.empty()){
+            left.push_back(-1);
+        }
+        else{
+            left.push_back(s2.top().second);
+        }
+    }
+    s2.push({arr[i],i});
+}
+  for(int i=0; i<7; i++){
+      cout<<left[i]<<" ";
+  }
+    cout<<endl;
+   vector<int> width;
+   for(int i=0; i<7; i++){
+       width.push_back(right[i]-left[i]-1);
+   }
+   for(int i=0; i<7; i++){
+       cout<<width[i]<<" ";
+   }
+   cout<<endl;
+   int max=0;
+   for(int i=0; i<7; i++){
+       if((width[i]*arr[i])>max){
+           max = (width[i]*arr[i]);
+       }
+   }
+    cout<<"The Area of Histogram is- "<<max<<endl;
+    return 0;
+}
+///////////////////max area rectangle in a binary matrix
+
+CHIRAG SAHU
+1 year ago
+//MAX RECT AREA IN A BINARY MATRIX
+#include<iostream>
+#include<stack>
+using namespace std;
+int* NSLi(int arr[], int n)
+{//CHECKED
+	int* NSLi = new int[n];
+	stack <pair<int,int>> st;
+	for(int i = 0 ; i < n ; i ++)
+	{
+		if(!st.size())
+			NSLi[i] = -1;
+		else if (st.top().first < arr[i])
+			NSLi[i] = st.top().second;
+		else
+		{
+			while(st.size() > 0 && st.top().first >= arr[i])
+				st.pop();
+			if(!st.size())
+				 NSLi[i] = -1;
+			else NSLi[i] = st.top().second;
+		}
+	st.push({arr[i],i});
+	}
+	return NSLi;
+}
+int* NSRi(int arr[], int n)
+{//CHECKED
+	int* nsri = new int [n];
+	stack < pair <int,int> > st;
+	for(int i = n-1; i >= 0 ; i --)
+	{
+		if(!st.size())
+			nsri[i] = n;
+		else if (st.top().first < arr[i])
+			nsri[i] = st.top().second;
+		else
+		{
+			while(st.size()>0 && st.top().first >= arr[i])
+				st.pop();
+			if(!st.size())
+				nsri[i] = n;
+			else nsri[i] = st.top().second;
+		}
+	st.push({arr[i],i});
+	}
+	return nsri;
+}
+int MAH(int arr[], int n)
+{//CHECKED
+	int* nsli = NSLi(arr,n);
+	int* nsri = NSRi(arr,n);
+
+	int area[n];
+	for(int i = 0 ; i < n ; i ++)
+		area[i] = arr[i] * (nsri[i] - nsli[i] - 1);
+	int max = 0;
+		for(int i = 0 ; i < n ; i ++)
+			if (area[i] >= max)
+				max = area[i];
+
+	return max;
+}
+int main()
+{
+	freopen("input.txt","r",stdin);
+	int n , m ; cin >> n >> m;
+	int arr[n][m];
+
+	for(int i = 0 ; i < n ; i ++)
+		for (int j = 0 ; j < m ; j ++)
+			cin >> arr[i][j];			//input
+
+	for(int i = 1 ; i < n ; i ++)
+		for(int j = 0 ; j < m ; j++)
+			if(arr[i][j] > 0)
+				arr[i][j] += arr[i-1][j] ;
+
+	int ans[n];
+	for(int i = 0 ; i < m ; i ++)
+		ans[i] = MAH(arr[i],m);
+
+	int max = 0;
+	for(int i = 0 ; i < n ; i ++)
+		if (ans[i] >= max)
+			max = ans[i];
+
+	cout << max << endl;
+
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #include <bits/stdc++.h>
 using namespace std;
 

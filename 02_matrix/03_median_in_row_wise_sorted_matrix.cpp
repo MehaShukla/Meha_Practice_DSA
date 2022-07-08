@@ -16,14 +16,15 @@
 
 
 // ----------------------------------------------------------------------------------------------------------------------- //
-// function to find median in the matrix
+// function to find median in the matrix- each row binary search so MlogN (m=rowno,n=col no)
 int binaryMedian(vector<vector<int>>& matrix, int r, int c)
 {
     int mn = INT_MAX, mx = INT_MIN;
     for (int i = 0; i < r; i++)
     {
         // Finding the minimum element
-        mn = min(mn, matrix[i][0]);
+        //sabse min elemt sare rows k phle column pe hoga and max hoga sare rows k last column me kahi
+        mn = min(mn, matrix[i][0]);// so row badalre through loop column phle 0 then n-1
 
         // Finding the maximum element
         mx = max(mn, matrix[i][c - 1]);
@@ -35,7 +36,8 @@ int binaryMedian(vector<vector<int>>& matrix, int r, int c)
         int mid = mn + (mx - mn) / 2;
         int place = 0;
 
-        // Find count of elements smaller than mid
+        // Find count of elements smaller than mid- why?- our median is that elmnt jiske phle n bad equal no of
+        //elemnts(adhe adhe ) ho.
         for (int i = 0; i < r; ++i) {
             place += upper_bound(matrix[i].begin(), matrix[i].begin() + c, mid) - matrix[i].begin();
             // cout << i << ": " << curr << endl;

@@ -137,7 +137,7 @@ string Minimum_Window(string s, string t)
         m[s[j]]--;
         if (m[s[j]] == 0)
             count--;
-
+                          // t=abc s= aaaaaaaabcdfbcda
         // Condition matching
         if (count == 0) {
             while (count == 0) {

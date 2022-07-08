@@ -1,10 +1,11 @@
 /*
     link: https://practice.geeksforgeeks.org/problems/sorted-matrix2333/1
+    sort all elmnts in matrix
 */
 
 
 // ----------------------------------------------------------------------------------------------------------------------- //
-vector<vector<int>> sortedMatrix(int n, vector<vector<int>> mat) {
+vector<vector<int>> sortedMatrix(int n, vector<vector<int>> mat) {// nsq(logn)
         // code here
     vector<int> temp;
     for (int i = 0;i < n;i++) {
