@@ -11,25 +11,25 @@
 Node* reverseDLL(Node* head)
 {
     //Your code here
-    Node* curr = head, * next = NULL, * prev = NULL;
+    Node* curr = head, * temp = NULL, * prev = NULL;
 
     while (curr) {
 
         // saving next of current node in "next" named node
-        next = curr->next;
+        temp = curr->next;
 
         // current node's next is prev value.
         curr->next = prev;
 
         // current node's prev will be next named node
-        curr->prev = next;
+        curr->prev = temp;
 
         // setting up prev and curr for future iteration.
         prev = curr;
-        curr = next;
+        curr = temp;
     }
 
-    // assigning head to last node 
+    // assigning head to last node
     head = prev;
     return head;
 }

@@ -32,28 +32,13 @@ Node* getNode(int data)
 // function to insert a node at the beginging
 // of the Doubly Linked List
 void push(Node** head_ref, Node* new_node)
-{
-    // since we are adding at the beginning,
-    // prev is always NULL
-    new_node->prev = NULL;
-
-    // link the old list off the new node
-    new_node->next = (*head_ref);
-
-    // change prev of head node to new node
-    if ((*head_ref) != NULL)
-        (*head_ref)->prev = new_node;
-
-    // move the head to point to the new node
-    (*head_ref) = new_node;
-}
 
 // function to reverse a doubly linked list
 // in groups of given size
 Node* revListInGroupOfGivenSize(Node* head, int k)
 {
     Node* current = head;
-    Node* next = NULL;
+    Node* temp = NULL;
     Node* newHead = NULL;
     int count = 0;
 
@@ -63,17 +48,32 @@ Node* revListInGroupOfGivenSize(Node* head, int k)
     // 'newHead'
     while (current != NULL && count < k)
     {
-        next = current->next;
-        push(&newHead, current);
-        current = next;
+        temp= current->next;
+
+    // since we are adding at the beginning,
+    // prev is always NULL
+    current->prev = NULL;
+
+    // link the old list off the new node
+    current->next = (newHead);
+
+    // change prev of head node to new node
+    if ((newHead) != NULL)
+        (newHead)->prev = current;
+
+    // move the head to point to the new node
+    (newHead) = current;
+
+
+        current = temp;
         count++;
     }
 
     // if next group exists then making the desired
     // adjustments in the link
-    if (next != NULL)
+    if (temp != NULL)
     {
-        head->next = revListInGroupOfGivenSize(next, k);
+        head->next = revListInGroupOfGivenSize(temp, k);
         head->next->prev = head;
     }
 

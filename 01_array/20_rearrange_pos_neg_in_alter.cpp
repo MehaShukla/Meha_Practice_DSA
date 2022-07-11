@@ -2,9 +2,60 @@
     link: https://www.geeksforgeeks.org/rearrange-array-alternating-positive-negative-items-o1-extra-space/
 */
 
-
+https://www.youtube.com/watch?v=5MeI5Kk8KTQ
 
 // ----------------------------------------------------------------------------------------------------------------------- //
+//o (n) time n o(1) space
+/*
+in rearranged array Negative elements are found at Even index(0,2,4,6,8..) and Positive Elements are found at odd index(1,3,5,7,9...)
+The idea is to process array from left to right. While processing, find the first out of place element in the remaining unprocessed array.
+An element is out of place if it is negative and at odd index (0 based index), or it is positive and at even index (0 based index) . Once we find an out of place element,
+we find the first element after it with opposite sign. We right rotate the subarray between these two elements (including these two).
+*/
+
+public static void rearrange(int[] arr)
+	{
+	      int wrongIndex = -1;//No Wrong Index
+             for (int i=0;i<arr.length;i++)
+            {
+                if (wrongIndex>=0)
+                    if ((arr[wrongIndex]<0 && arr[i] >= 0) || (arr[wrongIndex]>= 0 && arr[i] < 0))
+                   {
+                       rightRotate(arr,wrongIndex,i);
+                       if((i - wrongIndex)==1)
+                          wrongIndex = -1;
+                      else((i - wrongIndex)>= 2)
+                         wrongIndex+=2;
+                  }
+
+               if (wrongIndex==-1)
+                   if(((i%2)==0 && arr[i]>= 0)|| ((i%2)==1 && arr[i]<0))
+                       wrongIndex = i;
+             }
+	}
+
+
+	 public static void rightRotate(int a[], int wrongIndex, int index)
+	 {
+            int temp=a[index];
+           for(int i=index;i>wrongIndex;i--)
+             a[i]=a[i-1];
+            a[wrongIndex]=temp;
+         }
+
+
+  For better Explanation Trace the Below Examples--->
+
+ Input:  arr[] = {-5, -2,7,-6,} //(i - wrongIndex)==1
+output: arr[] = {-5, 7, -2, -6}
+
+Input:  arr[] = {-5, -2,-7,5}  //(i - wrongIndex)==2
+output: arr[] = {-5, 5, -2, -7}
+
+Input:  arr[] = {-5, -2,-7,-6,5}  //(i - wrongIndex)>2
+output: arr[] = {-5, 5, -2, -7,-6}
+
+
 /*
     Time Complexity : O(N^2)
     Space Complexity : O(1)
@@ -168,7 +219,7 @@ int partition(int A[], int n)
     {
         if (A[i] < pivot)
         {
-            swap(A[i], A[j]);  //{ 9, -3, 5, -2, -8, -6, 1, 3 }; // -3 -2 -8 -6 
+            swap(A[i], A[j]);  //{ 9, -3, 5, -2, -8, -6, 1, 3 }; // -3 -2 -8 -6
             j++;
         }
     }

@@ -5,6 +5,22 @@
 
 
 // ----------------------------------------------------------------------------------------------------------------------- //
+o(n) time, o(1) space
+int findDuplicate(vector<int>& nums) {
+    int size = nums.size();
+    for (int i = 0;i < size;i++) {
+        if(a[a[i]-1]!=i+1&&a[i]<n&&a[i]>0)
+        swap(a[a[i]-1],a[i]);
+
+    }
+for (int i = 0;i < size;i++)
+if(a[i]!=i+1)
+return a[i];
+
+
+    return 0; // of no use just to avoid error
+}
+
 /*
     perfect solution. (very tricky)
     here we take every element and make negative to its 0 based index hence whenever we get again positive int.

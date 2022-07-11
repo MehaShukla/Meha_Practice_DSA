@@ -54,12 +54,13 @@ void splitList(Node* head, Node** head1_ref, Node** head2_ref)
         fast = fast->next->next;
     }
 
-    // now for even size linklist we have move fast pointer 1 more time (trace the code for even length linklist)
+    // now for even size linklist we have move fast pointer 1 more time (trace the code
+    //for even length linklist)
     if (fast->next->next == head) {
         fast = fast->next;
     }
 
-    // assign each head_ref to its own part 
+    // assign each head_ref to its own part
     *head1_ref = head;
     *head2_ref = slow->next;
 
